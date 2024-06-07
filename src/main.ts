@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { connectToDB } from './db/db';
 
 dotenv.config();
 
@@ -10,8 +11,9 @@ const start = async () => {
     app.listen(3000, () => {
       console.log('Server started on port 3000');
     });
-  }
-  catch (error) {
+
+  await connectToDB();
+  } catch (error) {
     console.log(error);
   }
 }
